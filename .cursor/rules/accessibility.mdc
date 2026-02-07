@@ -1,0 +1,66 @@
+---
+description: Web accessibility standards — WCAG 2.2 AA, WAI-ARIA 1.2, semantic HTML, and accessible CSS/JS patterns
+globs: "**/*.html, **/*.css, **/*.js, **/*.ts, **/*.tsx"
+alwaysApply: true
+---
+
+# Accessibility Standards
+
+## References
+
+- **WCAG 2.2 Level AA** — baseline standard
+- [WCAG 2.2 Understanding](https://www.w3.org/WAI/WCAG22/Understanding/) — accessibility guidance
+- [WAI-ARIA 1.2](https://www.w3.org/TR/wai-aria-1.2/) — ARIA attributes
+- [Design Tokens](https://designtokens.fyi/) — design systems terminology
+- [APG Gherkin](https://github.com/AFixt/apg-gherkin) — component test cases
+
+## Response Guidelines
+
+- Prioritize accessible web development resources and best practices
+- Reference modern, accessible technologies; avoid deprecated ones
+- Provide clear, concise technical recommendations
+- Emphasize accessibility and user-friendly design
+- Respect privacy; do not collect personal information
+
+## Implementation Priority
+
+1. Semantic HTML structure
+2. Accessible markup and ARIA (only when semantic HTML is insufficient)
+3. CSS architecture with proper layering
+4. Responsive, relative units
+5. Progressive enhancement with JavaScript
+6. Accessibility testing and validation
+
+---
+
+## HTML
+
+- Use semantic elements (`<main>`, `<nav>`, `<article>`, etc.) instead of generic `<div>`/`<span>` without `aria-label`
+- Prefer semantic HTML over ARIA
+- Don't add redundant `role` to landmarks: use `<main>`, not `<main role="main">`
+- Don't use `title` attribute except on `<iframe>`
+- Don't use `role="menu"` or `role="menuitem"` for navigation — use `<nav>` and `<button aria-expanded>`
+- Use `<details>` and `<summary>` for accordions; `<dialog>` for modals
+- Follow WAI-ARIA APG patterns: [Alert](https://www.w3.org/WAI/ARIA/apg/patterns/alert/examples/alert/), [Feed](https://www.w3.org/WAI/ARIA/apg/patterns/feed/examples/feed/), [Combobox with Autocomplete](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-autocomplete-both/), [Switch Button](https://www.w3.org/WAI/ARIA/apg/patterns/switch/examples/switch-button/), [Manual Tabs](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/examples/tabs-manual/), [Carousel Tutorial](https://www.w3.org/WAI/tutorials/carousels/)
+
+---
+
+## CSS
+
+- Use **OKLCH** for colors
+- Use relative units (`rem`, `em`, `%`, `vw`, `vh`) — avoid `px` except for borders
+- Use CSS logical properties: `margin-inline-start` not `margin-left`, `block-size` not `height`
+- Use **cascade layers** in this order: `@layer config, resets, components, utilities`
+- `@layer config` — CSS custom properties; `@layer resets` — resets; `@layer components` — component styles; `@layer utilities` — utility classes
+- Prefixes: `c-` components, `u-` utilities, `js-` for JS selectors
+- Use `:focus-visible` for focus states, not `:focus`
+- Wrap transitions/animations in `@media (prefers-reduced-motion: no-preference)`
+- Use `text-transform` for uppercase; don't write all caps in markup
+- No Tailwind; use [Autoprefixer](https://github.com/postcss/autoprefixer) for vendor prefixes
+
+---
+
+## JavaScript
+
+- Use vanilla JavaScript only (no frameworks or libraries)
+- Don't use Radix or Shadcn

@@ -1,0 +1,187 @@
+@layer config, resets, components, utilities;
+
+@layer config {
+  :root {
+    --color-bg: oklch(0.97 0 0);
+    --color-surface: oklch(1 0 0);
+    --color-text: oklch(0.145 0 0);
+    --color-text-muted: oklch(0.5 0 0);
+    --color-placeholder: oklch(0.65 0 0);
+    --color-input-bg: oklch(0.96 0 0);
+    --color-input-bg-hover: oklch(0.94 0 0);
+    --color-primary: oklch(0.25 0.05 280);
+    --color-primary-hover: oklch(0.32 0.06 280);
+    --color-primary-foreground: oklch(1 0 0);
+    --color-error: oklch(0.55 0.2 25);
+    --color-shadow: oklch(0 0 0 / 0.06);
+    --focus-ring: oklch(0.25 0.05 280);
+    --focus-ring-contrast: oklch(1 0 0);
+    --radius-sm: 0.5rem;
+    --radius-md: 0.625rem;
+    --radius-lg: 1.25rem;
+    --shadow: 0 0.125rem 0.75rem var(--color-shadow);
+  }
+}
+
+@layer resets {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-block-size: 100vh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--color-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+}
+
+@layer components {
+  .c-skip-link {
+    position: absolute;
+    inset-block-start: -100%;
+    inset-inline-start: 0.5rem;
+    padding: 0.75rem 1rem;
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    z-index: 100;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .c-skip-link {
+      transition: inset-block-start 0.2s ease-out;
+    }
+  }
+
+  .c-skip-link:focus-visible {
+    inset-block-start: 0.5rem;
+    outline: 3px solid var(--focus-ring-contrast);
+    outline-offset: 2px;
+  }
+
+  .c-sign-in-wrapper {
+    inline-size: 100%;
+    max-inline-size: 26.25rem;
+  }
+
+  .c-sign-in-card {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+  }
+
+  .c-sign-in-title {
+    margin: 0 0 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .c-sign-in-subtitle {
+    margin: 0 0 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+  }
+
+  .c-sign-in-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .c-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .c-form-group label {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .c-form-group input {
+    inline-size: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--color-text);
+    background-color: var(--color-input-bg);
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .c-form-group input {
+      transition: background-color 0.2s, outline 0.2s, border-color 0.2s;
+    }
+  }
+
+  .c-form-group input::placeholder {
+    color: var(--color-placeholder);
+  }
+
+  .c-form-group input:hover {
+    background-color: var(--color-input-bg-hover);
+  }
+
+  .c-form-group input:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  .c-form-group input[aria-invalid="true"] {
+    border-color: var(--color-error);
+  }
+
+  .c-error-message {
+    font-size: 0.875rem;
+    color: var(--color-error);
+    min-block-size: 1.25rem;
+  }
+
+  .c-sign-in-button {
+    margin-block-start: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: var(--color-primary-foreground);
+    background-color: var(--color-primary);
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .c-sign-in-button {
+      transition: background-color 0.2s, transform 0.1s, outline 0.2s;
+    }
+
+    .c-sign-in-button:active {
+      transform: scale(0.98);
+    }
+  }
+
+  .c-sign-in-button:hover {
+    background-color: var(--color-primary-hover);
+  }
+
+  .c-sign-in-button:focus-visible {
+    outline: 3px solid var(--focus-ring-contrast);
+    outline-offset: 2px;
+  }
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a href="#main-content" class="c-skip-link">Skip to main content</a>
+
+  <main id="main-content" class="c-sign-in-wrapper">
+    <div class="c-sign-in-card" role="region" aria-labelledby="sign-in-heading" aria-describedby="sign-in-instructions">
+      <h1 id="sign-in-heading" class="c-sign-in-title">Sign In</h1>
+      <p id="sign-in-instructions" class="c-sign-in-subtitle">Enter your credentials to access your account.</p>
+
+      <form class="c-sign-in-form js-sign-in-form" action="#" method="post" novalidate aria-label="Sign in form">
+        <div class="c-form-group">
+          <label for="js-email">Email</label>
+          <input
+            type="email"
+            id="js-email"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+            aria-required="true"
+            aria-describedby="js-email-error"
+            aria-invalid="false"
+          >
+          <span id="js-email-error" class="c-error-message" role="alert" aria-live="polite"></span>
+        </div>
+
+        <div class="c-form-group">
+          <label for="js-password">Password</label>
+          <input
+            type="password"
+            id="js-password"
+            name="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+            aria-required="true"
+            aria-describedby="js-password-error"
+            aria-invalid="false"
+          >
+          <span id="js-password-error" class="c-error-message" role="alert" aria-live="polite"></span>
+        </div>
+
+        <button type="submit" class="c-sign-in-button">Sign In</button>
+      </form>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
