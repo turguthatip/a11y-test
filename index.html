@@ -76,7 +76,7 @@
               </svg>
             </button>
             <div class="carousel__main">
-              <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=600&h=700&fit=crop" alt="Rainbow Galaxy bouquet - vibrant red roses, purple chrysanthemums and eucalyptus in ribbed vase" class="carousel__image">
+              <img src="images/carousel-1.png" alt="Rainbow Galaxy bouquet - white lilies and eucalyptus held by hand" class="carousel__image">
             </div>
             <button class="carousel__btn carousel__btn--next" type="button" aria-label="Next image">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -86,13 +86,13 @@
           </div>
           <div class="carousel__thumbnails" role="tablist" aria-label="Image thumbnails">
             <button type="button" class="carousel__thumb carousel__thumb--active" role="tab" aria-selected="true" aria-label="View image 1 of 3" id="carousel-tab-0">
-              <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=120&h=120&fit=crop" alt="" aria-hidden="true">
+              <img src="images/carousel-1.png" alt="" aria-hidden="true">
             </button>
             <button type="button" class="carousel__thumb" role="tab" aria-selected="false" aria-label="View image 2 of 3" id="carousel-tab-1">
-              <img src="https://images.unsplash.com/photo-1518895312237-a9e23508077d?w=120&h=120&fit=crop" alt="" aria-hidden="true">
+              <img src="images/carousel-2.png" alt="" aria-hidden="true">
             </button>
             <button type="button" class="carousel__thumb" role="tab" aria-selected="false" aria-label="View image 3 of 3" id="carousel-tab-2">
-              <img src="https://images.unsplash.com/photo-1455659817273-f96807779a8a?w=120&h=120&fit=crop" alt="" aria-hidden="true">
+              <img src="images/carousel-3.png" alt="" aria-hidden="true">
             </button>
           </div>
         </div>
@@ -131,7 +131,7 @@
               <button class="quantity-selector__btn" type="button" aria-label="Increase quantity">+</button>
             </div>
           </div>
-          <button class="btn btn--primary btn--full">Add to cart</button>
+          <button type="button" class="btn btn--primary btn--full js-add-to-cart">Purchase</button>
           <div class="product__gift-note">
             <label for="gift-note" class="product__label">Add a gift note (optional)</label>
             <textarea id="gift-note" class="product__textarea" placeholder="Write your romantic message here..." rows="3"></textarea>
@@ -243,52 +243,137 @@
     </section>
   </main>
 
-  <!-- Signup Modal -->
-  <div class="modal" id="signup-modal" aria-hidden="true" role="dialog" aria-labelledby="signup-modal-title">
-    <div class="modal__overlay js-modal-close"></div>
-    <div class="modal__content">
-      <button class="modal__close js-modal-close" type="button" aria-label="Close signup form">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 6 6 18M6 6l12 12"/>
-        </svg>
-      </button>
-      <div class="modal__illustration">
-        <svg width="120" height="140" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <ellipse cx="60" cy="125" rx="45" ry="8" fill="#e8c4c4"/>
-          <rect x="45" y="85" width="30" height="45" rx="4" fill="#e8c4c4"/>
-          <path d="M60 85V25M45 50 L60 25 L75 50M40 70 L60 40 L80 70M35 90 L60 55 L85 90" stroke="#2d5a27" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M60 25c0 0 15 15 15 35 0 8-7 15-15 15s-15-7-15-15c0-20 15-35 15-35z" fill="#3d7a2e"/>
-        </svg>
+  <!-- Checkout Modal (Shipping) -->
+  <div class="modal modal--checkout" id="checkout-modal" aria-hidden="true" role="dialog" aria-labelledby="checkout-modal-title">
+    <div class="modal__overlay js-checkout-close"></div>
+    <div class="modal__content modal__content--checkout">
+      <div class="checkout-modal__header">
+        <nav class="checkout-steps" aria-label="Checkout progress">
+          <ol class="checkout-steps__list" id="checkout-steps-list">
+            <li class="checkout-steps__item checkout-steps__item--current" data-step="1" id="checkout-step-1">
+              <button type="button" class="checkout-steps__trigger" data-step="1" aria-label="Go to step 1: Shipping">
+                <span class="checkout-steps__num" aria-hidden="true">1</span>
+                <span class="checkout-steps__label">Shipping</span>
+              </button>
+            </li>
+            <li class="checkout-steps__item" data-step="2" id="checkout-step-2">
+              <button type="button" class="checkout-steps__trigger" data-step="2" aria-label="Go to step 2: Payment">
+                <span class="checkout-steps__num" aria-hidden="true">2</span>
+                <span class="checkout-steps__label">Payment</span>
+              </button>
+            </li>
+          </ol>
+        </nav>
+        <button class="modal__close js-checkout-close" type="button" aria-label="Close checkout">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6 6 18M6 6l12 12"/>
+          </svg>
+        </button>
       </div>
-      <h2 id="signup-modal-title" class="modal__title">Join the flowers subscriptions!</h2>
-      <form class="modal__form" novalidate>
-        <div class="modal__field" data-field="email">
-          <label for="signup-email" class="modal__label">Email address</label>
-          <div class="modal__input-wrapper">
-            <input type="email" id="signup-email" class="modal__input" placeholder="Email address" required autocomplete="email">
-            <svg class="modal__error-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-            </svg>
-          </div>
-          <span class="modal__error-message" role="alert"></span>
+
+      <div class="checkout-modal__body">
+        <div class="checkout-modal__form-section" id="checkout-panel-shipping" role="region" aria-labelledby="checkout-modal-title" data-checkout-panel="shipping">
+          <h2 id="checkout-modal-title" class="checkout-modal__title">Shipping Address</h2>
+          <p class="checkout-modal__hint">Required fields are marked with an asterisk.</p>
+          <p id="checkout-shipping-error" class="checkout-form__error" role="alert" aria-live="assertive" hidden></p>
+          <form class="checkout-form" novalidate>
+            <div class="modal__field">
+              <label for="checkout-first-name" class="modal__label">First Name <span aria-hidden="true">*</span></label>
+              <input type="text" id="checkout-first-name" class="modal__input" required autocomplete="given-name">
+            </div>
+            <div class="modal__field">
+              <label for="checkout-address" class="modal__label">Address <span aria-hidden="true">*</span></label>
+              <input type="text" id="checkout-address" class="modal__input" required autocomplete="street-address">
+            </div>
+            <div class="modal__field">
+              <label for="checkout-zip" class="modal__label">Zip Code <span aria-hidden="true">*</span></label>
+              <input type="text" id="checkout-zip" class="modal__input" required autocomplete="postal-code" inputmode="numeric">
+            </div>
+            <div class="checkout-form__row">
+              <div class="modal__field modal__field--autocomplete">
+                <label for="checkout-state" class="modal__label">State</label>
+                <input type="text" id="checkout-state" class="modal__input" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="checkout-state-listbox" aria-activedescendant="">
+                <div id="checkout-state-listbox" class="autocomplete-listbox" role="listbox" aria-label="State suggestions" hidden></div>
+              </div>
+              <div class="modal__field modal__field--autocomplete">
+                <label for="checkout-city" class="modal__label">City</label>
+                <input type="text" id="checkout-city" class="modal__input" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="checkout-city-listbox" aria-activedescendant="">
+                <div id="checkout-city-listbox" class="autocomplete-listbox" role="listbox" aria-label="City suggestions" hidden></div>
+              </div>
+            </div>
+          </form>
         </div>
-        <div class="modal__field" data-field="password">
-          <label for="signup-password" class="modal__label">Password</label>
-          <div class="modal__input-wrapper">
-            <input type="password" id="signup-password" class="modal__input" placeholder="Password" required autocomplete="new-password">
-            <svg class="modal__error-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-            </svg>
-          </div>
-          <span class="modal__error-message" role="alert"></span>
+
+        <div class="checkout-modal__form-section checkout-step-panel" id="checkout-panel-payment" role="region" aria-labelledby="checkout-payment-title" data-checkout-panel="payment" hidden>
+          <h2 id="checkout-payment-title" class="checkout-modal__title">Payment</h2>
+          <p class="checkout-modal__hint">Required fields are marked with an asterisk.</p>
+          <p id="checkout-payment-error" class="checkout-form__error" role="alert" aria-live="assertive" hidden></p>
+          <form class="checkout-form checkout-form--payment" novalidate>
+            <div class="modal__field">
+              <label for="checkout-card-number" class="modal__label">Card Number <span aria-hidden="true">*</span></label>
+              <div class="modal__input-wrapper modal__input-wrapper--icon">
+                <input type="text" id="checkout-card-number" class="modal__input" placeholder="XXXX XXXX XXXX XXXX" autocomplete="cc-number" inputmode="numeric" maxlength="19">
+                <span class="checkout-payment__icon" aria-hidden="true">
+                  <svg width="24" height="16" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="1" y="3" width="22" height="10" rx="2"/>
+                    <path d="M1 7h22"/>
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <div class="modal__field">
+              <label for="checkout-cardholder" class="modal__label">Cardholder Name <span aria-hidden="true">*</span></label>
+              <input type="text" id="checkout-cardholder" class="modal__input" placeholder="Cardholder Name" autocomplete="cc-name">
+            </div>
+            <div class="checkout-payment__row">
+              <div class="modal__field">
+                <label for="checkout-expiry" class="modal__label">Expiration Date <span aria-hidden="true">*</span></label>
+                <input type="text" id="checkout-expiry" class="modal__input" placeholder="MM/YYYY" autocomplete="cc-exp" inputmode="numeric" maxlength="7">
+              </div>
+              <div class="modal__field">
+                <label for="checkout-cvv" class="modal__label">Security Code / CVV <span aria-hidden="true">*</span></label>
+                <div class="modal__input-wrapper modal__input-wrapper--icon">
+                  <input type="text" id="checkout-cvv" class="modal__input" placeholder="CVV" autocomplete="off" inputmode="numeric" maxlength="4">
+                  <span class="checkout-payment__icon" aria-hidden="true">
+                    <svg width="24" height="16" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <rect x="1" y="3" width="22" height="10" rx="2"/>
+                      <path d="M1 7h22"/>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
-        <label class="modal__checkbox">
-          <input type="checkbox" name="terms" required>
-          <span class="modal__checkbox-box"></span>
-          I have read and agree the <a href="#" class="modal__link">Privacy Policy</a> and <a href="#" class="modal__link">Terms of Service</a>
-        </label>
-        <button type="submit" class="btn btn--primary btn--full">Create a free account</button>
-      </form>
+
+        <aside class="checkout-modal__summary" aria-labelledby="order-summary-title">
+          <h3 id="order-summary-title" class="checkout-summary__title">Order summary</h3>
+          <p class="checkout-summary__product">
+            <strong>Rainbow Galaxy</strong>
+            <span class="checkout-summary__tag">New</span>
+          </p>
+          <p class="checkout-summary__delivery">Free delivery</p>
+          <dl class="checkout-summary__lines">
+            <div class="checkout-summary__row">
+              <dt>Sub-total</dt>
+              <dd>$20</dd>
+            </div>
+            <div class="checkout-summary__row">
+              <dt>Discount (0%)</dt>
+              <dd>$0.00</dd>
+            </div>
+            <div class="checkout-summary__row">
+              <dt>VAT (0%)</dt>
+              <dd>$0.00</dd>
+            </div>
+          </dl>
+          <div class="checkout-summary__total">
+            <span class="checkout-summary__total-label">Total amount</span>
+            <span class="checkout-summary__total-value">$ 20</span>
+          </div>
+          <button type="button" class="btn btn--checkout-continue btn--full js-checkout-continue" data-step-1-text="Continue to payment" data-step-2-text="Place order">Continue to payment</button>
+        </aside>
+      </div>
     </div>
   </div>
 
